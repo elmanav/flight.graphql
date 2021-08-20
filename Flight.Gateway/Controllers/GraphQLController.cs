@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Flight.Contracts;
+using HotChocolate;
 using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,18 +10,23 @@ namespace Flight.Gateway.Controllers
     public class GraphQLController : Controller
     {
         private readonly IRequestClient<IGraphQLRequest> _client;
-        
-        public GraphQLController(IRequestClient<IGraphQLRequest> client)
+        private readonly ISchema _schema;
+
+        public GraphQLController(IRequestClient<IGraphQLRequest> client, ISchema schema)
         {
             _client = client;
+            _schema = schema;
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQueryDto query)
         {
-
-            var response = await _client.GetResponse<IGraphQLResponse>(new { Query = query.Query });
-           return Ok(response.Message.QueryResult);
+            if (query.Query.ToLower().Contains("schema"))
+            {
+                return Ok(_schema.Print());
+            }
+            var response = await _client.GetResponse<IGraphQLResponse>(new { query.Query });
+            return Ok(response.Message.QueryResult);
         }
     }
 }

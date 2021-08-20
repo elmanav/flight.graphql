@@ -10,7 +10,7 @@
     <PackageReference Include="MassTransit.AspNetCore" Version="7.2.2" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.2" />
     <PackageReference Include="HotChocolate.AspNetCore" Version="11.3.5" />
-    <PackageReference Include="HotChocolate.Data" Version="11.3.5" />
+    <PackageReference Include="HotChocolate.Stitching" Version="11.3.5" />
   </ItemGroup>
 
   <ItemGroup>

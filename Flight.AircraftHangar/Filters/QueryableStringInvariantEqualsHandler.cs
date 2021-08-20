@@ -31,27 +31,13 @@ namespace Flight.AircraftHangar.Filters
 			{
 				MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
 				return Expression.Call(Expression.Call(property, _toLower), method, Expression.Constant(str.ToLower()));
-
 				
-				
-				// return Expression.Equal(
-				// 	Expression.Call(property, _toLower),
-				// 	Expression.Constant(str.ToLower()));
 			}
 
 			throw new InvalidOperationException();
 		}
 
-		static Expression<Func<T, bool>> GetExpression<T>(string propertyName, string propertyValue)
-		{
-			var parameterExp = Expression.Parameter(typeof(T), "type");
-			var propertyExp = Expression.Property(parameterExp, propertyName);
-			MethodInfo method = typeof(string).GetMethod("Contains", new[] { typeof(string) });
-			var someValue = Expression.Constant(propertyValue, typeof(string));
-			var containsMethodExp = Expression.Call(propertyExp, method, someValue);
-
-			return Expression.Lambda<Func<T, bool>>(containsMethodExp, parameterExp);
-		}
+		
 
 
 	}

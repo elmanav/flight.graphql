@@ -1,4 +1,6 @@
 using Flight.Contracts;
+using HotChocolate;
+using HotChocolate.Execution;
 using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -35,8 +37,9 @@ namespace Flight.Gateway
 
             services.AddMassTransitHostedService();
 
-            services.AddGraphQLServer()
-                .AddDocumentFromFile("./Schema.graphql");            
+            var builder = services.AddGraphQLServer()
+                .AddRemoteSchemaFromFile("aircrafts","./Schema.graphql");
+            //services.AddSingleton<ISchema>(builder.BuildSchemaAsync().GetAwaiter().GetResult());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

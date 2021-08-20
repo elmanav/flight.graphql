@@ -7,7 +7,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "workingDirectory": "D:/development/samples/graphql/Samples/complete/output"
+      "workingDirectory": "D:/development/samples/graphql/Samples/flight/output"
     }
   }
 }
