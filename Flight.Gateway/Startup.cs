@@ -1,18 +1,19 @@
-using Flight.Contracts;
-using HotChocolate;
-using HotChocolate.Execution;
-using MassTransit;
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
 
 namespace Flight.Gateway
 {
     public class Startup
     {
+        private const string AircraftHangarSchema = "aircraftHangar";
+        private const string AirportsSchema = "airports";
+        private const string FlightsSchema = "flights";
+        private const string AirlinesSchema = "airlines";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -23,47 +24,34 @@ namespace Flight.Gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Flight.Gateway", Version = "v1" });
-            });
-            services.AddMassTransit(cfg =>
-            {
-                cfg.SetKebabCaseEndpointNameFormatter();
-                cfg.UsingRabbitMq();
-                cfg.AddRequestClient<IGraphQLRequest>();
-            });
+            services.AddHttpClient(AircraftHangarSchema,
+                client => client.BaseAddress = new Uri("http://localhost:5051/graphql"));
+            services.AddHttpClient(AirportsSchema,
+                client => client.BaseAddress = new Uri("http://localhost:5052/graphql"));
+            services.AddHttpClient(FlightsSchema,
+                client => client.BaseAddress = new Uri("http://localhost:5053/graphql"));
+            services.AddHttpClient(AirlinesSchema,
+                client => client.BaseAddress = new Uri("http://localhost:5054/graphql"));
 
-            services.AddMassTransitHostedService();
-
-            var builder = services.AddGraphQLServer()
-                .AddRemoteSchemaFromFile("aircrafts","./Schema.graphql");
-            //services.AddSingleton<ISchema>(builder.BuildSchemaAsync().GetAwaiter().GetResult());
+            services.AddGraphQLServer()
+                .AddRemoteSchema(AircraftHangarSchema, true)
+                .AddRemoteSchema(AirportsSchema, true)
+                .AddRemoteSchema(FlightsSchema, false)
+                .AddRemoteSchema(AirlinesSchema, true)
+                //.AddQueryType(descriptor => descriptor.Name("Query"))
+                .AddTypeExtensionsFromFile("./Stitching.graphql");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Flight.Gateway v1"));
-            }
+            if (env.IsDevelopment()) app.UseDeveloperExceptionPage();
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
-
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapGraphQL();
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => { endpoints.MapGraphQL(); });
         }
     }
 }

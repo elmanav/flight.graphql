@@ -1,13 +1,13 @@
 ﻿{
   "profiles": {
-    "AircraftHangarService": {
+    "Flight.AircraftHangar": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
-      "applicationUrl": "http://localhost:5001",
+      "applicationUrl": "http://localhost:5051",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "workingDirectory": "D:/development/samples/graphql/Samples/flight/output"
+      "workingDirectory": "../output"
     }
   }
 }

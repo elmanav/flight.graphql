@@ -1,12 +1,14 @@
 ﻿{
+  
   "profiles": {
-    "Flight.Gateway": {
+    "Flight.LiveBoard": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
-      "applicationUrl": "http://localhost:5100",
+      "applicationUrl": "http://localhost:5053",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      },
+      "workingDirectory": "../output"
     }
   }
 }

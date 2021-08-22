@@ -1,26 +1,24 @@
 ﻿using System.Linq;
 using Flight.AircraftHangar.Models;
+using HotChocolate;
 using HotChocolate.Data;
 
 namespace Flight.AircraftHangar
 {
-	public class Query
-	{
-		private readonly AircraftDbContext _context;
+    public class Query
+    {
+        #region Public
 
-		public Query(AircraftDbContext context)
-		{
-			_context = context;
-		}
+        public IQueryable<Aircraft> GetAircrafts([Service] AircraftDbContext context)
+        {
+            return context.Aircrafts;
+        }
 
-		#region Public
+        public Aircraft? GetAircraft(string regNumber, [Service] AircraftDbContext context)
+        {
+            return context.Aircrafts.FirstOrDefault(aircraft => aircraft.RegNumber == regNumber);
+        }
 
-		[UseFiltering()]
-		public IQueryable<Aircraft> GetAircrafts()
-		{
-			return _context.Aircrafts;
-		}
-
-		#endregion
-	}
+        #endregion
+    }
 }

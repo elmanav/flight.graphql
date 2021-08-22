@@ -1,0 +1,17 @@
+﻿extend type Query {
+    cactus1549: LiveFlight! @delegate(schema: "flights", path: "flight(number: \"UA1549\")")
+}
+extend type LiveFlight {
+    AircraftInfo: Aircraft
+    @delegate(schema: "aircraftHangar", path: "aircraft(regNumber: $fields:aircraft)")
+    
+    FromAirport: Airport
+    @delegate(schema: "airports", path: "airport(iata: $fields:from)")
+
+    ToAirport: Airport
+    @delegate(schema: "airports", path: "airport(iata: $fields:to)")
+
+    AirlineInfo: Airline
+    @delegate(schema: "airlines", path: "airline(icao: $fields:airline)")
+    
+}
