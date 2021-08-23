@@ -36,7 +36,7 @@ namespace Flight.Gateway
             services.AddGraphQLServer()
                 .AddRemoteSchema(AircraftHangarSchema, true)
                 .AddRemoteSchema(AirportsSchema, true)
-                .AddRemoteSchema(FlightsSchema, false)
+                .AddRemoteSchema(FlightsSchema)
                 .AddRemoteSchema(AirlinesSchema, true)
                 //.AddQueryType(descriptor => descriptor.Name("Query"))
                 .AddTypeExtensionsFromFile("./Stitching.graphql");

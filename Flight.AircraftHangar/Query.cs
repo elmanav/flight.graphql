@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using Flight.AircraftHangar.Models;
 using HotChocolate;
-using HotChocolate.Data;
 
 namespace Flight.AircraftHangar
 {

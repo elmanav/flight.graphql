@@ -18,14 +18,18 @@ namespace ConferencePlanner.GraphQL.Attendees
             [ID(nameof(Session))] int sessionId,
             [EventMessage] int attendeeId,
             SessionByIdDataLoader sessionById,
-            CancellationToken cancellationToken) =>
-            new SessionAttendeeCheckIn(attendeeId, sessionId);
+            CancellationToken cancellationToken)
+        {
+            return new(attendeeId, sessionId);
+        }
 
         public async ValueTask<ISourceStream<int>> SubscribeToOnAttendeeCheckedInAsync(
             int sessionId,
             [Service] ITopicEventReceiver eventReceiver,
-            CancellationToken cancellationToken) =>
-            await eventReceiver.SubscribeAsync<string, int>(
+            CancellationToken cancellationToken)
+        {
+            return await eventReceiver.SubscribeAsync<string, int>(
                 "OnAttendeeCheckedIn_" + sessionId, cancellationToken);
+        }
     }
 }

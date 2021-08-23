@@ -9,7 +9,7 @@ namespace Flight.LiveBoard
     {
         #region Public
 
-        [UseFiltering()]
+        [UseFiltering]
         public IQueryable<LiveFlight> GetFlights([Service] FlightDbContext context)
         {
             return context.Flights;

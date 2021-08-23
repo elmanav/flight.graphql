@@ -9,6 +9,14 @@ namespace ConferencePlanner.GraphQL.Data
         {
         }
 
+        public DbSet<Session> Sessions { get; set; } = default!;
+
+        public DbSet<Track> Tracks { get; set; } = default!;
+
+        public DbSet<Speaker> Speakers { get; set; } = default!;
+
+        public DbSet<Attendee> Attendees { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
@@ -26,13 +34,5 @@ namespace ConferencePlanner.GraphQL.Data
                 .Entity<SessionSpeaker>()
                 .HasKey(ss => new { ss.SessionId, ss.SpeakerId });
         }
-
-        public DbSet<Session> Sessions { get; set; } = default!;
-
-        public DbSet<Track> Tracks { get; set; } = default!;
-
-        public DbSet<Speaker> Speakers { get; set; } = default!;
-
-        public DbSet<Attendee> Attendees { get; set; } = default!;
     }
 }

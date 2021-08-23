@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Flight.Airports
 {
-    public class AirportDbContext : Microsoft.EntityFrameworkCore.DbContext
+    public class AirportDbContext : DbContext
     {
         public AirportDbContext(DbContextOptions<AirportDbContext> options) : base(options)
         {

@@ -22,47 +22,45 @@ namespace ConferencePlanner.GraphQL.Imports
             var speakers = new Dictionary<string, Speaker>();
 
             foreach (JObject conferenceDay in conference)
+            foreach (JObject roomData in conferenceDay["rooms"]!)
             {
-                foreach (JObject roomData in conferenceDay["rooms"]!)
+                var track = new Track
                 {
-                    var track = new Track
+                    Name = roomData["name"]!.ToString()
+                };
+
+                foreach (JObject sessionData in roomData["sessions"]!)
+                {
+                    var session = new Session
                     {
-                        Name = roomData["name"]!.ToString()
+                        Title = sessionData["title"]!.ToString(),
+                        Abstract = sessionData["description"]!.ToString(),
+                        StartTime = sessionData["startsAt"]!.Value<DateTime>(),
+                        EndTime = sessionData["endsAt"]!.Value<DateTime>()
                     };
 
-                    foreach (JObject sessionData in roomData["sessions"]!)
+                    track.Sessions.Add(session);
+
+                    foreach (JObject speakerData in sessionData["speakers"]!)
                     {
-                        var session = new Session
+                        if (!speakers.TryGetValue(speakerData["id"]!.ToString(), out var speaker))
                         {
-                            Title = sessionData["title"]!.ToString(),
-                            Abstract = sessionData["description"]!.ToString(),
-                            StartTime = sessionData["startsAt"]!.Value<DateTime>(),
-                            EndTime = sessionData["endsAt"]!.Value<DateTime>(),
-                        };
-
-                        track.Sessions.Add(session);
-
-                        foreach (JObject speakerData in sessionData["speakers"]!)
-                        {
-                            if (!speakers.TryGetValue(speakerData["id"]!.ToString(), out Speaker? speaker))
+                            speaker = new Speaker
                             {
-                                speaker = new Speaker
-                                { 
-                                    Name = speakerData["name"]!.ToString()
-                                };
-                                db.Speakers.Add(speaker);
-                            }
-
-                            session.SessionSpeakers.Add(new SessionSpeaker
-                            {
-                                Speaker = speaker,
-                                Session = session
-                            });
+                                Name = speakerData["name"]!.ToString()
+                            };
+                            db.Speakers.Add(speaker);
                         }
-                    }
 
-                    db.Tracks.Add(track);
+                        session.SessionSpeakers.Add(new SessionSpeaker
+                        {
+                            Speaker = speaker,
+                            Session = session
+                        });
+                    }
                 }
+
+                db.Tracks.Add(track);
             }
 
             await db.SaveChangesAsync();

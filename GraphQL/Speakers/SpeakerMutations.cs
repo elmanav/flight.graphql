@@ -36,33 +36,20 @@ namespace ConferencePlanner.GraphQL.Speakers
             CancellationToken cancellationToken)
         {
             if (input.Name.HasValue && input.Name.Value is null)
-            {
                 return new ModifySpeakerPayload(
                     new UserError("Name cannot be null", "NAME_NULL"));
-            }
 
-            Speaker? speaker = await context.Speakers.FindAsync(input.Id);
+            var speaker = await context.Speakers.FindAsync(input.Id);
 
             if (speaker is null)
-            {
                 return new ModifySpeakerPayload(
                     new UserError("Speaker with id not found.", "SPEAKER_NOT_FOUND"));
-            }
 
-            if (input.Name.HasValue)
-            {
-                speaker.Name = input.Name;
-            }
+            if (input.Name.HasValue) speaker.Name = input.Name;
 
-            if (input.Bio.HasValue)
-            {
-                speaker.Bio = input.Bio;
-            }
+            if (input.Bio.HasValue) speaker.Bio = input.Bio;
 
-            if (input.WebSite.HasValue)
-            {
-                speaker.WebSite = input.WebSite;
-            }
+            if (input.WebSite.HasValue) speaker.WebSite = input.WebSite;
 
             await context.SaveChangesAsync(cancellationToken);
 

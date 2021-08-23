@@ -8,7 +8,7 @@ namespace Flight.ImportData
     {
         private static async Task Main(string[] args)
         {
-	        var builder = new DbContextOptionsBuilder<FlightDbContext>();
+            var builder = new DbContextOptionsBuilder<FlightDbContext>();
             builder.UseSqlite(@"Data Source=flights.db");
             await using var context = new FlightDbContext(builder.Options);
             if (await context.Database.EnsureCreatedAsync())

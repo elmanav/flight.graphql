@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
 using HotChocolate;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.Sessions
 {
@@ -26,10 +26,7 @@ namespace ConferencePlanner.GraphQL.Sessions
             TrackByIdDataLoader trackById,
             CancellationToken cancellationToken)
         {
-            if (Session is null)
-            {
-                return null;
-            }
+            if (Session is null) return null;
 
             return await trackById.LoadAsync(Session.Id, cancellationToken);
         }
@@ -40,10 +37,7 @@ namespace ConferencePlanner.GraphQL.Sessions
             SpeakerByIdDataLoader speakerById,
             CancellationToken cancellationToken)
         {
-            if (Session is null)
-            {
-                return null;
-            }
+            if (Session is null) return null;
 
             int[] speakerIds = await dbContext.Sessions
                 .Where(s => s.Id == Session.Id)

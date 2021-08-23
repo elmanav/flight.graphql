@@ -25,7 +25,8 @@ namespace Flight.ImportData
                 if (item.Value is JArray array)
                 {
                     var craft = new Aircraft { RegNumber = array[9].ToString(), ICAOCode = array[8].ToString() };
-                    var flight = new LiveFlight(array[13].ToString(), array[11].ToString(), array[12].ToString(), array[18].ToString(), array[9].ToString());
+                    var flight = new LiveFlight(array[13].ToString(), array[11].ToString(), array[12].ToString(),
+                        array[18].ToString(), array[9].ToString());
                     _context.Aircrafts.Add(craft);
                     _context.Flights.Add(flight);
                 }
@@ -34,7 +35,7 @@ namespace Flight.ImportData
         public async Task AddCactus1549HudsonRiverAsync()
         {
             await _context.Flights.AddAsync(new LiveFlight("UA1549", "LGA", "CLT", "UAL", "N106US"));
-            await _context.Aircrafts.AddAsync(new Aircraft(){RegNumber = "N106US", ICAOCode = "A320"});
+            await _context.Aircrafts.AddAsync(new Aircraft { RegNumber = "N106US", ICAOCode = "A320" });
         }
 
         public async Task ImportAirports()
@@ -48,7 +49,7 @@ namespace Flight.ImportData
                 _context.Airports.Add(airport);
             }
         }
-        
+
         public async Task ImportAirlines()
         {
             using var reader = await ImportAsync(new Uri("https://www.flightradar24.com/_json/airlines.php"));

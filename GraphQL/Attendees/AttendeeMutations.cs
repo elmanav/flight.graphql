@@ -1,11 +1,11 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Common;
 using ConferencePlanner.GraphQL.Data;
 using HotChocolate;
 using HotChocolate.Subscriptions;
 using HotChocolate.Types;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.Attendees
 {
@@ -44,10 +44,8 @@ namespace ConferencePlanner.GraphQL.Attendees
                 t => t.Id == input.AttendeeId, cancellationToken);
 
             if (attendee is null)
-            {
                 return new CheckInAttendeePayload(
                     new UserError("Attendee not found.", "ATTENDEE_NOT_FOUND"));
-            }
 
             attendee.SessionsAttendees.Add(
                 new SessionAttendee

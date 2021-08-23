@@ -21,13 +21,13 @@ namespace Flight.ImportData
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Airport>().Property<int>("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<Airport>().HasKey("Id");
-            
+
             modelBuilder.Entity<Airline>().Property<int>("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<Airline>().HasKey("Id");
-            
+
             modelBuilder.Entity<Aircraft>().Property<int>("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<Aircraft>().HasKey("Id");
-            
+
             modelBuilder.Entity<LiveFlight>().Property<int>("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<LiveFlight>().HasKey("Id");
         }

@@ -1,5 +1,3 @@
-using Flight.AircraftHangar.Filters;
-using HotChocolate.Execution;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;

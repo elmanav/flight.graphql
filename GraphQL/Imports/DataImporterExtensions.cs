@@ -1,4 +1,3 @@
-
 using ConferencePlanner.GraphQL.Data;
 using HotChocolate.Execution.Configuration;
 using Microsoft.EntityFrameworkCore;
@@ -9,8 +8,9 @@ namespace ConferencePlanner.GraphQL.Imports
     public static class ImportRequestExecutorBuilderExtensions
     {
         public static IRequestExecutorBuilder EnsureDatabaseIsCreated(
-            this IRequestExecutorBuilder builder) =>
-            builder.ConfigureSchemaAsync(async (services, builder, ct) =>
+            this IRequestExecutorBuilder builder)
+        {
+            return builder.ConfigureSchemaAsync(async (services, builder, ct) =>
             {
                 IDbContextFactory<ApplicationDbContext> factory =
                     services.GetRequiredService<IDbContextFactory<ApplicationDbContext>>();
@@ -23,4 +23,5 @@ namespace ConferencePlanner.GraphQL.Imports
                 }
             });
         }
+    }
 }

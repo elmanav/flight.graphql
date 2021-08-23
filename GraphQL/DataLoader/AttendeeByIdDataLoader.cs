@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Data;
 using GreenDonut;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.DataLoader
 {
@@ -18,15 +18,15 @@ namespace ConferencePlanner.GraphQL.DataLoader
             IDbContextFactory<ApplicationDbContext> dbContextFactory)
             : base(batchScheduler)
         {
-            _dbContextFactory = dbContextFactory ?? 
-                throw new ArgumentNullException(nameof(dbContextFactory));
+            _dbContextFactory = dbContextFactory ??
+                                throw new ArgumentNullException(nameof(dbContextFactory));
         }
 
         protected override async Task<IReadOnlyDictionary<int, Attendee>> LoadBatchAsync(
             IReadOnlyList<int> keys,
             CancellationToken cancellationToken)
         {
-            await using ApplicationDbContext dbContext = 
+            await using ApplicationDbContext dbContext =
                 _dbContextFactory.CreateDbContext();
 
             return await dbContext.Attendees

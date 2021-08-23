@@ -1,6 +1,7 @@
+using HotChocolate.Types;
+using HotChocolate.Types.Descriptors.Definitions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using HotChocolate.Types;
 
 namespace ConferencePlanner.GraphQL
 {
@@ -10,8 +11,8 @@ namespace ConferencePlanner.GraphQL
             this IObjectFieldDescriptor descriptor)
             where TDbContext : DbContext
         {
-            return descriptor.UseScopedService<TDbContext>(
-                create: s => s.GetRequiredService<IDbContextFactory<TDbContext>>().CreateDbContext(),
+            return descriptor.UseScopedService(
+                s => s.GetRequiredService<IDbContextFactory<TDbContext>>().CreateDbContext(),
                 disposeAsync: (s, c) => c.DisposeAsync());
         }
 
@@ -20,12 +21,9 @@ namespace ConferencePlanner.GraphQL
         {
             // TODO : we need a better API for the user.
             descriptor.Extend().Definition.ResultConverters.Add(
-                new((context, result) =>
+                new ResultConverterDefinition((context, result) =>
                 {
-                    if (result is string s)
-                    {
-                        return s.ToUpperInvariant();
-                    }
+                    if (result is string s) return s.ToUpperInvariant();
                     return result;
                 }));
 

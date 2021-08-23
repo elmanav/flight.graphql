@@ -7,13 +7,8 @@ namespace Flight.AircraftHangar
     {
         public AircraftDbContext(DbContextOptions<AircraftDbContext> options) : base(options)
         {
-            
         }
 
-        public DbSet<Aircraft> Aircrafts
-        {
-            get;
-            private set;
-        }
+        public DbSet<Aircraft> Aircrafts { get; private set; }
     }
 }

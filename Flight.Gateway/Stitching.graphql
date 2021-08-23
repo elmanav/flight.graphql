@@ -4,7 +4,7 @@
 extend type LiveFlight {
     AircraftInfo: Aircraft
     @delegate(schema: "aircraftHangar", path: "aircraft(regNumber: $fields:aircraft)")
-    
+
     FromAirport: Airport
     @delegate(schema: "airports", path: "airport(iata: $fields:from)")
 
@@ -13,5 +13,5 @@ extend type LiveFlight {
 
     AirlineInfo: Airline
     @delegate(schema: "airlines", path: "airline(icao: $fields:airline)")
-    
+
 }

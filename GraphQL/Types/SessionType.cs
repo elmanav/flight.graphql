@@ -2,11 +2,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 using ConferencePlanner.GraphQL.Data;
 using ConferencePlanner.GraphQL.DataLoader;
 using HotChocolate;
 using HotChocolate.Types;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferencePlanner.GraphQL.Types
 {
@@ -77,10 +77,7 @@ namespace ConferencePlanner.GraphQL.Types
                 TrackByIdDataLoader trackById,
                 CancellationToken cancellationToken)
             {
-                if (session.TrackId is null)
-                {
-                    return null;
-                }
+                if (session.TrackId is null) return null;
 
                 return await trackById.LoadAsync(session.TrackId.Value, cancellationToken);
             }
