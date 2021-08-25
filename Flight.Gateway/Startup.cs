@@ -1,4 +1,5 @@
 using System;
+using HotChocolate.Execution;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -33,7 +34,7 @@ namespace Flight.Gateway
             services.AddHttpClient(AirlinesSchema,
                 client => client.BaseAddress = new Uri("http://localhost:5054/graphql"));
 
-            services.AddGraphQLServer()
+            var addTypeExtensionsFromFile = services.AddGraphQLServer()
                 .AddRemoteSchema(AircraftHangarSchema, true)
                 .AddRemoteSchema(AirportsSchema, true)
                 .AddRemoteSchema(FlightsSchema)

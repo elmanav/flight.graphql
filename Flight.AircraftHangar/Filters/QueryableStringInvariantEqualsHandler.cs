@@ -5,6 +5,8 @@ using System.Reflection;
 using HotChocolate.Data.Filters;
 using HotChocolate.Data.Filters.Expressions;
 using HotChocolate.Language;
+using HotChocolate.Types;
+using JetBrains.Annotations;
 
 namespace Flight.AircraftHangar.Filters
 {
@@ -32,6 +34,11 @@ namespace Flight.AircraftHangar.Filters
             }
 
             throw new InvalidOperationException();
+        }
+
+        /// <inheritdoc />
+        public QueryableStringInvariantEqualsHandler([NotNull] InputParser inputParser) : base(inputParser)
+        {
         }
     }
 }

@@ -24,11 +24,15 @@ namespace Flight.ImportData
             foreach (var item in data)
                 if (item.Value is JArray array)
                 {
-                    var craft = new Aircraft { RegNumber = array[9].ToString(), ICAOCode = array[8].ToString() };
-                    var flight = new LiveFlight(array[13].ToString(), array[11].ToString(), array[12].ToString(),
-                        array[18].ToString(), array[9].ToString());
-                    _context.Aircrafts.Add(craft);
-                    _context.Flights.Add(flight);
+                    var regNumber = array[9].ToString();
+                    if (!string.IsNullOrWhiteSpace(regNumber))
+                    {
+                        var craft = new Aircraft { RegNumber = regNumber, ICAOCode = array[8].ToString() };
+                        var flight = new LiveFlight(array[13].ToString(), array[11].ToString(), array[12].ToString(),
+                            array[18].ToString(), regNumber);
+                        _context.Aircrafts.Add(craft);
+                        _context.Flights.Add(flight);
+                    }
                 }
         }
 

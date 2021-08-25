@@ -1,9 +1,13 @@
-﻿extend type Query {
+﻿# noinspection GraphQLMissingType,GraphQLUnresolvedReference
+extend type Query {
     cactus1549: LiveFlight! @delegate(schema: "flights", path: "flight(number: \"UA1549\")")
 }
 extend type LiveFlight {
     AircraftInfo: Aircraft
     @delegate(schema: "aircraftHangar", path: "aircraft(regNumber: $fields:aircraft)")
+    
+    aircraftIcaoCode: String
+    @delegate(schema: "aircraftHangar", path: "aircraft(regNumber: $fields:aircraft).iCAOCode")
 
     FromAirport: Airport
     @delegate(schema: "airports", path: "airport(iata: $fields:from)")

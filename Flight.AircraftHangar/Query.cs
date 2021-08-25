@@ -1,6 +1,12 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using Flight.AircraftHangar.Models;
+using GreenDonut;
 using HotChocolate;
+using JetBrains.Annotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace Flight.AircraftHangar
 {
@@ -13,11 +19,31 @@ namespace Flight.AircraftHangar
             return context.Aircrafts;
         }
 
-        public Aircraft? GetAircraft(string regNumber, [Service] AircraftDbContext context)
+        public async Task<Aircraft?> GetAircraft(string regNumber, AircraftBatchDataLoader dataLoader)
         {
-            return context.Aircrafts.FirstOrDefault(aircraft => aircraft.RegNumber == regNumber);
+            return await dataLoader.LoadAsync(regNumber);
         }
 
+        
+        
         #endregion
+    }
+
+    public class AircraftBatchDataLoader : BatchDataLoader<string, Aircraft>
+    {
+        private readonly AircraftDbContext _context;
+
+        /// <inheritdoc />
+        public AircraftBatchDataLoader(AircraftDbContext context, [NotNull] IBatchScheduler batchScheduler, [CanBeNull] DataLoaderOptions<string>? options = null) : base(batchScheduler, options)
+        {
+            _context = context;
+        }
+
+        /// <inheritdoc />
+        protected override async Task<IReadOnlyDictionary<string, Aircraft>> LoadBatchAsync(IReadOnlyList<string> keys, CancellationToken cancellationToken)
+        {
+            var crafts = await _context.Aircrafts.Where(aircraft => keys.Contains(aircraft.RegNumber)).ToArrayAsync(cancellationToken: cancellationToken);
+            return crafts.ToDictionary(aircraft => aircraft.RegNumber);
+        }
     }
 }
