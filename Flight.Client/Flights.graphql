@@ -1,0 +1,9 @@
+﻿query GetFlights{
+    flights{
+        id
+        aircraft
+        airline
+        from
+        number        
+    }
+}

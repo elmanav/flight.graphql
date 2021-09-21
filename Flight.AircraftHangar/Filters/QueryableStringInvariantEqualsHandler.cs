@@ -37,8 +37,10 @@ namespace Flight.AircraftHangar.Filters
 			throw new InvalidOperationException();
 		}
 
-		
 
-
+		/// <inheritdoc />
+		public QueryableStringInvariantEqualsHandler([NotNull] InputParser inputParser) : base(inputParser)
+		{
+		}
 	}
 }
