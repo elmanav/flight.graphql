@@ -14,10 +14,12 @@ namespace Flight.ImportData
             if (await context.Database.EnsureCreatedAsync())
             {
                 var importer = new DataImporter(context);
-                await importer.ImportFlights();
+                await importer.ImportCountries();
+                await importer.ImportCities();
                 await importer.ImportAirports();
-                await importer.ImportAirlines();
-                await importer.AddCactus1549HudsonRiverAsync();
+                await importer.ImportAircraftModels();
+                // await importer.ImportAirlines();
+                // await importer.AddCactus1549HudsonRiverAsync();
                 await context.SaveChangesAsync();
             }
 

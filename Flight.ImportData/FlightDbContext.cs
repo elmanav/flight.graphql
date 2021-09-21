@@ -12,15 +12,17 @@ namespace Flight.ImportData
         public DbSet<Aircraft> Aircrafts { get; private set; }
 
         public DbSet<Airport> Airports { get; private set; }
+        public DbSet<AircraftModel> AircraftModels { get; private set; }
         public DbSet<Airline> Airlines { get; private set; }
         public DbSet<LiveFlight> Flights { get; private set; }
+        public DbSet<Country> Countries { get; private set; }
+        public DbSet<City> Cities { get; private set; }
 
         /// <inheritdoc />
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Airport>().Property<int>("Id").ValueGeneratedOnAdd();
-            modelBuilder.Entity<Airport>().HasKey("Id");
+            modelBuilder.Entity<Airport>().HasKey(airport => airport.Id);
             
             modelBuilder.Entity<Airline>().Property<int>("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<Airline>().HasKey("Id");
@@ -30,6 +32,12 @@ namespace Flight.ImportData
             
             modelBuilder.Entity<LiveFlight>().Property<int>("Id").ValueGeneratedOnAdd();
             modelBuilder.Entity<LiveFlight>().HasKey("Id");
+            
+            modelBuilder.Entity<Country>();
+            modelBuilder.Entity<Country>().HasKey(country => country.Id);
+            
+            modelBuilder.Entity<City>();
+            modelBuilder.Entity<City>().HasKey(country => country.Id);
         }
     }
 }
