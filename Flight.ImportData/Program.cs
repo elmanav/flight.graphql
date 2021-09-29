@@ -8,7 +8,6 @@ namespace Flight.ImportData
     {
         private static async Task Main(string[] args)
         {
-	        var dadasda = Environment.CurrentDirectory;
             var builder = new DbContextOptionsBuilder<FlightDbContext>();
             builder.UseSqlite(@"Data Source=flights.db");
             await using var context = new FlightDbContext(builder.Options);
@@ -16,6 +15,10 @@ namespace Flight.ImportData
             {
                 var importer = new DataImporter(context);
                 await importer.ImportFlights();
+                await importer.ImportAirports();
+                await importer.ImportAirlines();
+                await importer.AddCactus1549HudsonRiverAsync();
+                await context.SaveChangesAsync();
             }
 
             Console.WriteLine("Import complete.");

@@ -1,5 +1,5 @@
 <Project>
-  <PropertyGroup>    
+  <PropertyGroup>
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>

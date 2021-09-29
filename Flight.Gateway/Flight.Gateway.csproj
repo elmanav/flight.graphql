@@ -1,30 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>    
+    <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="HotChocolate.PersistedQueries.FileSystem" Version="11.3.5" />
+    <PackageReference Include="HotChocolate.PersistedQueries.FileSystem" Version="12.0.0-preview.30" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.2.2" />
-    <PackageReference Include="MassTransit.RabbitMQ" Version="7.2.2" />
-    <PackageReference Include="HotChocolate.AspNetCore" Version="11.3.5" />
-    <PackageReference Include="HotChocolate.Stitching" Version="11.3.5" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Schema.graphql">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <PackageReference Include="HotChocolate.AspNetCore" Version="12.0.0-preview.30" />
+    <PackageReference Include="HotChocolate.Stitching" Version="12.0.0-preview.30" />
   </ItemGroup>
 
   <PropertyGroup>
     <OutputPath>..\output</OutputPath>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Flight.Contracts\Flight.Contracts.csproj" />
-  </ItemGroup>
 
 </Project>

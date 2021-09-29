@@ -8,7 +8,7 @@ namespace ConferencePlanner.GraphQL.Attendees
 {
     public class CheckInAttendeePayload : AttendeePayloadBase
     {
-        private int? _sessionId;
+        private readonly int? _sessionId;
 
         public CheckInAttendeePayload(Attendee attendee, int sessionId)
             : base(attendee)
@@ -25,10 +25,7 @@ namespace ConferencePlanner.GraphQL.Attendees
             SessionByIdDataLoader sessionById,
             CancellationToken cancellationToken)
         {
-            if (_sessionId.HasValue)
-            {
-                return await sessionById.LoadAsync(_sessionId.Value, cancellationToken);
-            }
+            if (_sessionId.HasValue) return await sessionById.LoadAsync(_sessionId.Value, cancellationToken);
 
             return null;
         }

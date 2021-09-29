@@ -1,11 +1,7 @@
 using System;
 using System.Threading.Tasks;
-using ConferencePlanner.GraphQL;
 using ConferencePlanner.GraphQL.Attendees;
 using ConferencePlanner.GraphQL.Data;
-using ConferencePlanner.GraphQL.Sessions;
-using ConferencePlanner.GraphQL.Speakers;
-using ConferencePlanner.GraphQL.Tracks;
 using ConferencePlanner.GraphQL.Types;
 using HotChocolate;
 using HotChocolate.Execution;
@@ -27,9 +23,9 @@ namespace GraphQL.Tests
                         options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                     .AddGraphQL()
                     .AddQueryType(d => d.Name("Query"))
-                        .AddTypeExtension<AttendeeQueries>()
+                    .AddTypeExtension<AttendeeQueries>()
                     .AddMutationType(d => d.Name("Mutation"))
-                        .AddTypeExtension<AttendeeMutations>()
+                    .AddTypeExtension<AttendeeMutations>()
                     .AddType<AttendeeType>()
                     .AddType<SessionType>()
                     .AddType<SpeakerType>()
@@ -39,7 +35,7 @@ namespace GraphQL.Tests
 
             schema.Print().MatchSnapshot();
         }
-        
+
         [Fact]
         public async Task RegisterAttendee()
         {
@@ -48,18 +44,18 @@ namespace GraphQL.Tests
                 .AddDbContextPool<ApplicationDbContext>(
                     options => options.UseInMemoryDatabase("Data Source=conferences.db"))
                 .AddGraphQL()
-                    .AddQueryType(d => d.Name("Query"))
-                        .AddTypeExtension<AttendeeQueries>()
-                    .AddMutationType(d => d.Name("Mutation"))
-                        .AddTypeExtension<AttendeeMutations>()
-                    .AddType<AttendeeType>()
-                    .AddType<SessionType>()
-                    .AddType<SpeakerType>()
-                    .AddType<TrackType>()
-                    // .EnableRelaySupport()
+                .AddQueryType(d => d.Name("Query"))
+                .AddTypeExtension<AttendeeQueries>()
+                .AddMutationType(d => d.Name("Mutation"))
+                .AddTypeExtension<AttendeeMutations>()
+                .AddType<AttendeeType>()
+                .AddType<SessionType>()
+                .AddType<SpeakerType>()
+                .AddType<TrackType>()
+                // .EnableRelaySupport()
                 .Services
                 .BuildServiceProvider();
-            
+
             // act
             IExecutionResult result = await services.ExecuteRequestAsync(
                 QueryRequestBuilder.New()
@@ -79,7 +75,7 @@ namespace GraphQL.Tests
                             }
                         }")
                     .Create());
-            
+
             // assert
             result.MatchSnapshot();
         }
