@@ -1,49 +1,43 @@
 using System;
-using HotChocolate.Execution;
+using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace Flight.Gateway
 {
     public class Startup
     {
-        private const string AircraftHangarSchema = "aircraftHangar";
-        private const string AirportsSchema = "airports";
-        private const string FlightsSchema = "flights";
-        private const string AirlinesSchema = "airlines";
+        private readonly IConfiguration _configuration;
 
         public Startup(IConfiguration configuration)
         {
-            Configuration = configuration;
+            _configuration = configuration;
         }
 
-        public IConfiguration Configuration { get; }
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddHttpClient(AircraftHangarSchema,
-                client => client.BaseAddress = new Uri("http://localhost:5051/graphql"));
-            services.AddHttpClient(AirportsSchema,
-                client => client.BaseAddress = new Uri("http://localhost:5052/graphql"));
-            services.AddHttpClient(FlightsSchema,
-                client => client.BaseAddress = new Uri("http://localhost:5053/graphql"));
-            services.AddHttpClient(AirlinesSchema,
-                client => client.BaseAddress = new Uri("http://localhost:5054/graphql"));
+            var logger = services.BuildServiceProvider().GetRequiredService<ILogger<Startup>>();
+            
+            var servicesConfig = _configuration.GetSection("Services").GetChildren()
+                .Select(section => new { ServiceName = section.Key, ServiceUrl = section.Value }).ToList();
+            foreach (var serviceConfig in servicesConfig)
+                services.AddHttpClient(serviceConfig.ServiceName,
+                    client => client.BaseAddress = new Uri(serviceConfig.ServiceUrl));
 
-            var addTypeExtensionsFromFile = services.AddGraphQLServer()
-                .AddRemoteSchema(AircraftHangarSchema, true)
-                .AddRemoteSchema(AirportsSchema, true)
-                .AddRemoteSchema(FlightsSchema)
-                .AddRemoteSchema(AirlinesSchema, true)
-                //.AddQueryType(descriptor => descriptor.Name("Query"))
+            var builder = services.AddGraphQLServer()
+                .AddQueryType(descriptor => descriptor.Name("Query"))
                 .AddTypeExtensionsFromFile("./Stitching.graphql");
+            foreach (var serviceConfig in servicesConfig)
+            {
+                builder.AddRemoteSchema(serviceConfig.ServiceName, true);
+                logger.LogInformation("Adding remote schema: {ServiceName}", serviceConfig.ServiceName);
+            }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment()) app.UseDeveloperExceptionPage();

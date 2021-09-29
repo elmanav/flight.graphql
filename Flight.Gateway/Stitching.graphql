@@ -1,6 +1,7 @@
 ﻿# noinspection GraphQLMissingType,GraphQLUnresolvedReference
 extend type Query {
     cactus1549: LiveFlight! @delegate(schema: "flights", path: "flight(number: \"UA1549\")")
+    liveBoard: [LiveFlight!]! @delegate(schema: "flights", path: "flights")
 }
 extend type LiveFlight {
     AircraftInfo: Aircraft
@@ -17,5 +18,4 @@ extend type LiveFlight {
 
     AirlineInfo: Airline
     @delegate(schema: "airlines", path: "airline(icao: $fields:airline)")
-
 }
