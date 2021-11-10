@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Flight.AircraftHangar.Models;
-using GreenDonut;
 using HotChocolate;
+using HotChocolate.Types;
 using JetBrains.Annotations;
-using Microsoft.EntityFrameworkCore;
 
 namespace Flight.AircraftHangar
 {
@@ -24,26 +21,31 @@ namespace Flight.AircraftHangar
             return await dataLoader.LoadAsync(regNumber);
         }
 
-        
-        
+        // test input any parameter
+        public Aircraft GetAircraftByAny(ValueInput value)
+        {
+            return new Aircraft(){Id = 1, ICAOCode = "Tst"};
+        }
+        // public Aircraft GetAircraftByAny(TextValueInput data)
+        // {
+        //     return new Aircraft(){Id = 1, ICAOCode = "Tst"};
+        // }
+
         #endregion
+
+        public class ValueInput
+        {
+            public string TypeName { get; init; }
+            [GraphQLType(typeof(NonNullType<AnyType>))]
+            public object Value { get; init; }
+        }
     }
 
-    public class AircraftBatchDataLoader : BatchDataLoader<string, Aircraft>
+    class ValueAnyType : AnyType
     {
-        private readonly AircraftDbContext _context;
-
         /// <inheritdoc />
-        public AircraftBatchDataLoader(AircraftDbContext context, [NotNull] IBatchScheduler batchScheduler, [CanBeNull] DataLoaderOptions<string>? options = null) : base(batchScheduler, options)
+        public ValueAnyType() : base("AnyValue")
         {
-            _context = context;
-        }
-
-        /// <inheritdoc />
-        protected override async Task<IReadOnlyDictionary<string, Aircraft>> LoadBatchAsync(IReadOnlyList<string> keys, CancellationToken cancellationToken)
-        {
-            var crafts = await _context.Aircrafts.Where(aircraft => keys.Contains(aircraft.RegNumber)).ToArrayAsync(cancellationToken: cancellationToken);
-            return crafts.ToDictionary(aircraft => aircraft.RegNumber);
         }
     }
 }

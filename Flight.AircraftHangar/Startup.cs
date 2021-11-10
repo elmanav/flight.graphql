@@ -25,6 +25,7 @@ namespace Flight.AircraftHangar
         {
             services.AddGraphQLServer()
                 .AddQueryType<Query>();
+                //.AddType<Query.TextValueInput>();
 
             services.AddDbContext<AircraftDbContext>(optionsBuilder =>
             {

@@ -1,9 +1,5 @@
-﻿query GetFlights{
-    flights{
+﻿query GetAny($data: ValueInput!){
+    aircraftByAny(value: $data){
         id
-        aircraft
-        airline
-        from
-        number        
     }
 }

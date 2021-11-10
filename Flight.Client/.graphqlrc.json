@@ -4,8 +4,7 @@
   "extensions": {
     "strawberryShake": {
       "name": "FlightClient",
-      "namespace": "Flight.Client",
-      "url": "http://localhost:5100/graphql/",
+      "url": "http://localhost:5051/graphql/",
       "dependencyInjection": true,
       "strictSchemaValidation": true,
       "hashAlgorithm": "md5",

@@ -3,17 +3,17 @@
 
 namespace Flight.Client
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlightsResult : global::System.IEquatable<GetFlightsResult>, IGetFlightsResult
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAnyResult : global::System.IEquatable<GetAnyResult>, IGetAnyResult
     {
-        public GetFlightsResult(global::System.Collections.Generic.IReadOnlyList<global::Flight.Client.IGetFlights_Flights> flights)
+        public GetAnyResult(global::Flight.Client.IGetAny_AircraftByAny aircraftByAny)
         {
-            Flights = flights;
+            AircraftByAny = aircraftByAny;
         }
 
-        public global::System.Collections.Generic.IReadOnlyList<global::Flight.Client.IGetFlights_Flights> Flights { get; }
+        public global::Flight.Client.IGetAny_AircraftByAny AircraftByAny { get; }
 
-        public virtual global::System.Boolean Equals(GetFlightsResult? other)
+        public virtual global::System.Boolean Equals(GetAnyResult? other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -30,7 +30,7 @@ namespace Flight.Client
                 return false;
             }
 
-            return (global::StrawberryShake.Helper.ComparisonHelper.SequenceEqual(Flights, other.Flights));
+            return (AircraftByAny.Equals(other.AircraftByAny));
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -50,7 +50,7 @@ namespace Flight.Client
                 return false;
             }
 
-            return Equals((GetFlightsResult)obj);
+            return Equals((GetAnyResult)obj);
         }
 
         public override global::System.Int32 GetHashCode()
@@ -58,39 +58,23 @@ namespace Flight.Client
             unchecked
             {
                 int hash = 5;
-                foreach (var Flights_elm in Flights)
-                {
-                    hash ^= 397 * Flights_elm.GetHashCode();
-                }
-
+                hash ^= 397 * AircraftByAny.GetHashCode();
                 return hash;
             }
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlights_Flights_LiveFlight : global::System.IEquatable<GetFlights_Flights_LiveFlight>, IGetFlights_Flights_LiveFlight
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAny_AircraftByAny_Aircraft : global::System.IEquatable<GetAny_AircraftByAny_Aircraft>, IGetAny_AircraftByAny_Aircraft
     {
-        public GetFlights_Flights_LiveFlight(global::System.Int32 id, global::System.String aircraft, global::System.String airline, global::System.String @from, global::System.String number)
+        public GetAny_AircraftByAny_Aircraft(global::System.Int32 id)
         {
             Id = id;
-            Aircraft = aircraft;
-            Airline = airline;
-            From = @from;
-            Number = number;
         }
 
         public global::System.Int32 Id { get; }
 
-        public global::System.String Aircraft { get; }
-
-        public global::System.String Airline { get; }
-
-        public global::System.String From { get; }
-
-        public global::System.String Number { get; }
-
-        public virtual global::System.Boolean Equals(GetFlights_Flights_LiveFlight? other)
+        public virtual global::System.Boolean Equals(GetAny_AircraftByAny_Aircraft? other)
         {
             if (ReferenceEquals(null, other))
             {
@@ -107,7 +91,7 @@ namespace Flight.Client
                 return false;
             }
 
-            return (Id == other.Id) && Aircraft.Equals(other.Aircraft) && Airline.Equals(other.Airline) && From.Equals(other.From) && Number.Equals(other.Number);
+            return (Id == other.Id);
         }
 
         public override global::System.Boolean Equals(global::System.Object? obj)
@@ -127,7 +111,7 @@ namespace Flight.Client
                 return false;
             }
 
-            return Equals((GetFlights_Flights_LiveFlight)obj);
+            return Equals((GetAny_AircraftByAny_Aircraft)obj);
         }
 
         public override global::System.Int32 GetHashCode()
@@ -136,69 +120,196 @@ namespace Flight.Client
             {
                 int hash = 5;
                 hash ^= 397 * Id.GetHashCode();
-                hash ^= 397 * Aircraft.GetHashCode();
-                hash ^= 397 * Airline.GetHashCode();
-                hash ^= 397 * From.GetHashCode();
-                hash ^= 397 * Number.GetHashCode();
                 return hash;
             }
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public interface IGetFlightsResult
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public interface IGetAnyResult
     {
-        public global::System.Collections.Generic.IReadOnlyList<global::Flight.Client.IGetFlights_Flights> Flights { get; }
+        public global::Flight.Client.IGetAny_AircraftByAny AircraftByAny { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public interface IGetFlights_Flights
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public interface IGetAny_AircraftByAny
     {
         public global::System.Int32 Id { get; }
-
-        public global::System.String Aircraft { get; }
-
-        public global::System.String Airline { get; }
-
-        public global::System.String From { get; }
-
-        public global::System.String Number { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public interface IGetFlights_Flights_LiveFlight : IGetFlights_Flights
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public interface IGetAny_AircraftByAny_Aircraft : IGetAny_AircraftByAny
     {
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class ValueInputInputValueFormatter : global::StrawberryShake.Serialization.IInputObjectFormatter
+    {
+        private global::StrawberryShake.Serialization.IInputValueFormatter _stringFormatter = default !;
+        private global::StrawberryShake.Serialization.IInputValueFormatter _anyFormatter = default !;
+        public global::System.String TypeName => "ValueInput";
+        public void Initialize(global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        {
+            _stringFormatter = serializerResolver.GetInputValueFormatter("String");
+            _anyFormatter = serializerResolver.GetInputValueFormatter("Any");
+        }
+
+        public global::System.Object? Format(global::System.Object? runtimeValue)
+        {
+            if (runtimeValue is null)
+            {
+                return null;
+            }
+
+            var input = runtimeValue as global::Flight.Client.ValueInput;
+            var inputInfo = runtimeValue as global::Flight.Client.State.IValueInputInfo;
+            if (input is null || inputInfo is null)
+            {
+                throw new global::System.ArgumentException(nameof(runtimeValue));
+            }
+
+            var fields = new global::System.Collections.Generic.List<global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>>();
+            if (inputInfo.IsTypeNameSet)
+            {
+                fields.Add(new global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>("typeName", FormatTypeName(input.TypeName)));
+            }
+
+            if (inputInfo.IsValueSet)
+            {
+                fields.Add(new global::System.Collections.Generic.KeyValuePair<global::System.String, global::System.Object?>("value", FormatValue(input.Value)));
+            }
+
+            return fields;
+        }
+
+        private global::System.Object? FormatTypeName(global::System.String input)
+        {
+            if (input is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(input));
+            }
+
+            return _stringFormatter.Format(input);
+        }
+
+        private global::System.Object? FormatValue(global::System.Object input)
+        {
+            if (input is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(input));
+            }
+
+            return _anyFormatter.Format(input);
+        }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class ValueInput : global::Flight.Client.State.IValueInputInfo, global::System.IEquatable<ValueInput>
+    {
+        public override global::System.Boolean Equals(global::System.Object? obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return Equals((ValueInput)obj);
+        }
+
+        public virtual global::System.Boolean Equals(ValueInput? other)
+        {
+            if (ReferenceEquals(null, other))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            if (other.GetType() != GetType())
+            {
+                return false;
+            }
+
+            return (TypeName.Equals(other.TypeName)) && Value == other.Value;
+        }
+
+        public override global::System.Int32 GetHashCode()
+        {
+            unchecked
+            {
+                int hash = 5;
+                hash ^= 397 * TypeName.GetHashCode();
+                hash ^= 397 * Value.GetHashCode();
+                return hash;
+            }
+        }
+
+        private global::System.String _value_typeName = default !;
+        private global::System.Boolean _set_typeName;
+        private global::System.Object _value_value = default !;
+        private global::System.Boolean _set_value;
+        public global::System.String TypeName
+        {
+            get => _value_typeName;
+            set
+            {
+                _set_typeName = true;
+                _value_typeName = value;
+            }
+        }
+
+        global::System.Boolean global::Flight.Client.State.IValueInputInfo.IsTypeNameSet => _set_typeName;
+        public global::System.Object Value
+        {
+            get => _value_value;
+            set
+            {
+                _set_value = true;
+                _value_value = value;
+            }
+        }
+
+        global::System.Boolean global::Flight.Client.State.IValueInputInfo.IsValueSet => _set_value;
     }
 
     /// <summary>
-    /// Represents the operation service of the GetFlights GraphQL operation
+    /// Represents the operation service of the GetAny GraphQL operation
     /// <code>
-    /// query GetFlights {
-    ///   flights {
+    /// query GetAny($data: ValueInput!) {
+    ///   aircraftByAny(value: $data) {
     ///     __typename
     ///     id
-    ///     aircraft
-    ///     airline
-    ///     from
-    ///     number
-    ///     ... on LiveFlight {
+    ///     ... on Aircraft {
     ///       id
     ///     }
     ///   }
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlightsQueryDocument : global::StrawberryShake.IDocument
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAnyQueryDocument : global::StrawberryShake.IDocument
     {
-        private GetFlightsQueryDocument()
+        private GetAnyQueryDocument()
         {
         }
 
-        public static GetFlightsQueryDocument Instance { get; } = new GetFlightsQueryDocument();
+        public static GetAnyQueryDocument Instance { get; } = new GetAnyQueryDocument();
         public global::StrawberryShake.OperationKind Kind => global::StrawberryShake.OperationKind.Query;
-        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x47, 0x65, 0x74, 0x46, 0x6c, 0x69, 0x67, 0x68, 0x74, 0x73, 0x20, 0x7b, 0x20, 0x66, 0x6c, 0x69, 0x67, 0x68, 0x74, 0x73, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x69, 0x64, 0x20, 0x61, 0x69, 0x72, 0x63, 0x72, 0x61, 0x66, 0x74, 0x20, 0x61, 0x69, 0x72, 0x6c, 0x69, 0x6e, 0x65, 0x20, 0x66, 0x72, 0x6f, 0x6d, 0x20, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x20, 0x2e, 0x2e, 0x2e, 0x20, 0x6f, 0x6e, 0x20, 0x4c, 0x69, 0x76, 0x65, 0x46, 0x6c, 0x69, 0x67, 0x68, 0x74, 0x20, 0x7b, 0x20, 0x69, 0x64, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
-        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "da6c640c59e8e5fddd8a086911120431");
+        public global::System.ReadOnlySpan<global::System.Byte> Body => new global::System.Byte[]{0x71, 0x75, 0x65, 0x72, 0x79, 0x20, 0x47, 0x65, 0x74, 0x41, 0x6e, 0x79, 0x28, 0x24, 0x64, 0x61, 0x74, 0x61, 0x3a, 0x20, 0x56, 0x61, 0x6c, 0x75, 0x65, 0x49, 0x6e, 0x70, 0x75, 0x74, 0x21, 0x29, 0x20, 0x7b, 0x20, 0x61, 0x69, 0x72, 0x63, 0x72, 0x61, 0x66, 0x74, 0x42, 0x79, 0x41, 0x6e, 0x79, 0x28, 0x76, 0x61, 0x6c, 0x75, 0x65, 0x3a, 0x20, 0x24, 0x64, 0x61, 0x74, 0x61, 0x29, 0x20, 0x7b, 0x20, 0x5f, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x6e, 0x61, 0x6d, 0x65, 0x20, 0x69, 0x64, 0x20, 0x2e, 0x2e, 0x2e, 0x20, 0x6f, 0x6e, 0x20, 0x41, 0x69, 0x72, 0x63, 0x72, 0x61, 0x66, 0x74, 0x20, 0x7b, 0x20, 0x69, 0x64, 0x20, 0x7d, 0x20, 0x7d, 0x20, 0x7d};
+        public global::StrawberryShake.DocumentHash Hash { get; } = new global::StrawberryShake.DocumentHash("md5Hash", "a1d13a8fc1b699be3494dff118389686");
         public override global::System.String ToString()
         {
 #if NETSTANDARD2_0
@@ -210,185 +321,163 @@ namespace Flight.Client
     }
 
     /// <summary>
-    /// Represents the operation service of the GetFlights GraphQL operation
+    /// Represents the operation service of the GetAny GraphQL operation
     /// <code>
-    /// query GetFlights {
-    ///   flights {
+    /// query GetAny($data: ValueInput!) {
+    ///   aircraftByAny(value: $data) {
     ///     __typename
     ///     id
-    ///     aircraft
-    ///     airline
-    ///     from
-    ///     number
-    ///     ... on LiveFlight {
+    ///     ... on Aircraft {
     ///       id
     ///     }
     ///   }
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlightsQuery : global::Flight.Client.IGetFlightsQuery
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAnyQuery : global::Flight.Client.IGetAnyQuery
     {
-        private readonly global::StrawberryShake.IOperationExecutor<IGetFlightsResult> _operationExecutor;
-        public GetFlightsQuery(global::StrawberryShake.IOperationExecutor<IGetFlightsResult> operationExecutor)
+        private readonly global::StrawberryShake.IOperationExecutor<IGetAnyResult> _operationExecutor;
+        private readonly global::StrawberryShake.Serialization.IInputValueFormatter _valueInputFormatter;
+        public GetAnyQuery(global::StrawberryShake.IOperationExecutor<IGetAnyResult> operationExecutor, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
         {
             _operationExecutor = operationExecutor ?? throw new global::System.ArgumentNullException(nameof(operationExecutor));
+            _valueInputFormatter = serializerResolver.GetInputValueFormatter("ValueInput");
         }
 
-        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IGetFlightsResult);
-        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetFlightsResult>> ExecuteAsync(global::System.Threading.CancellationToken cancellationToken = default)
+        global::System.Type global::StrawberryShake.IOperationRequestFactory.ResultType => typeof(IGetAnyResult);
+        public async global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetAnyResult>> ExecuteAsync(global::Flight.Client.ValueInput data, global::System.Threading.CancellationToken cancellationToken = default)
         {
-            var request = CreateRequest();
+            var request = CreateRequest(data);
             return await _operationExecutor.ExecuteAsync(request, cancellationToken).ConfigureAwait(false);
         }
 
-        public global::System.IObservable<global::StrawberryShake.IOperationResult<IGetFlightsResult>> Watch(global::StrawberryShake.ExecutionStrategy? strategy = null)
+        public global::System.IObservable<global::StrawberryShake.IOperationResult<IGetAnyResult>> Watch(global::Flight.Client.ValueInput data, global::StrawberryShake.ExecutionStrategy? strategy = null)
         {
-            var request = CreateRequest();
+            var request = CreateRequest(data);
             return _operationExecutor.Watch(request, strategy);
         }
 
-        private global::StrawberryShake.OperationRequest CreateRequest()
+        private global::StrawberryShake.OperationRequest CreateRequest(global::Flight.Client.ValueInput data)
         {
-            return CreateRequest(null);
+            var variables = new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>();
+            variables.Add("data", FormatData(data));
+            return CreateRequest(variables);
         }
 
         private global::StrawberryShake.OperationRequest CreateRequest(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
         {
-            return new global::StrawberryShake.OperationRequest(id: GetFlightsQueryDocument.Instance.Hash.Value, name: "GetFlights", document: GetFlightsQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default);
+            return new global::StrawberryShake.OperationRequest(id: GetAnyQueryDocument.Instance.Hash.Value, name: "GetAny", document: GetAnyQueryDocument.Instance, strategy: global::StrawberryShake.RequestStrategy.Default, variables: variables);
+        }
+
+        private global::System.Object? FormatData(global::Flight.Client.ValueInput value)
+        {
+            if (value is null)
+            {
+                throw new global::System.ArgumentNullException(nameof(value));
+            }
+
+            return _valueInputFormatter.Format(value);
         }
 
         global::StrawberryShake.OperationRequest global::StrawberryShake.IOperationRequestFactory.Create(global::System.Collections.Generic.IReadOnlyDictionary<global::System.String, global::System.Object?>? variables)
         {
-            return CreateRequest();
+            return CreateRequest(variables!);
         }
     }
 
     /// <summary>
-    /// Represents the operation service of the GetFlights GraphQL operation
+    /// Represents the operation service of the GetAny GraphQL operation
     /// <code>
-    /// query GetFlights {
-    ///   flights {
+    /// query GetAny($data: ValueInput!) {
+    ///   aircraftByAny(value: $data) {
     ///     __typename
     ///     id
-    ///     aircraft
-    ///     airline
-    ///     from
-    ///     number
-    ///     ... on LiveFlight {
+    ///     ... on Aircraft {
     ///       id
     ///     }
     ///   }
     /// }
     /// </code>
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public interface IGetFlightsQuery : global::StrawberryShake.IOperationRequestFactory
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public interface IGetAnyQuery : global::StrawberryShake.IOperationRequestFactory
     {
-        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetFlightsResult>> ExecuteAsync(global::System.Threading.CancellationToken cancellationToken = default);
-        global::System.IObservable<global::StrawberryShake.IOperationResult<IGetFlightsResult>> Watch(global::StrawberryShake.ExecutionStrategy? strategy = null);
+        global::System.Threading.Tasks.Task<global::StrawberryShake.IOperationResult<IGetAnyResult>> ExecuteAsync(global::Flight.Client.ValueInput data, global::System.Threading.CancellationToken cancellationToken = default);
+        global::System.IObservable<global::StrawberryShake.IOperationResult<IGetAnyResult>> Watch(global::Flight.Client.ValueInput data, global::StrawberryShake.ExecutionStrategy? strategy = null);
     }
 
     /// <summary>
     /// Represents the FlightClient GraphQL client
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
     public partial class FlightClient : global::Flight.Client.IFlightClient
     {
-        private readonly global::Flight.Client.IGetFlightsQuery _getFlights;
-        public FlightClient(global::Flight.Client.IGetFlightsQuery getFlights)
+        private readonly global::Flight.Client.IGetAnyQuery _getAny;
+        public FlightClient(global::Flight.Client.IGetAnyQuery getAny)
         {
-            _getFlights = getFlights ?? throw new global::System.ArgumentNullException(nameof(getFlights));
+            _getAny = getAny ?? throw new global::System.ArgumentNullException(nameof(getAny));
         }
 
         public static global::System.String ClientName => "FlightClient";
-        public global::Flight.Client.IGetFlightsQuery GetFlights => _getFlights;
+        public global::Flight.Client.IGetAnyQuery GetAny => _getAny;
     }
 
     /// <summary>
     /// Represents the FlightClient GraphQL client
     /// </summary>
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
     public interface IFlightClient
     {
-        global::Flight.Client.IGetFlightsQuery GetFlights { get; }
+        global::Flight.Client.IGetAnyQuery GetAny { get; }
     }
 }
 
 namespace Flight.Client.State
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class LiveFlightEntity
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class AircraftEntity
     {
-        public LiveFlightEntity(global::System.Int32 id = default !, global::System.String aircraft = default !, global::System.String airline = default !, global::System.String @from = default !, global::System.String number = default !)
+        public AircraftEntity(global::System.Int32 id = default !)
         {
             Id = id;
-            Aircraft = aircraft;
-            Airline = airline;
-            From = @from;
-            Number = number;
         }
 
         public global::System.Int32 Id { get; }
-
-        public global::System.String Aircraft { get; }
-
-        public global::System.String Airline { get; }
-
-        public global::System.String From { get; }
-
-        public global::System.String Number { get; }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlightsResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.GetFlightsResult>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAnyResultFactory : global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.GetAnyResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
-        private readonly global::StrawberryShake.IEntityMapper<global::Flight.Client.State.LiveFlightEntity, GetFlights_Flights_LiveFlight> _getFlights_Flights_LiveFlightFromLiveFlightEntityMapper;
-        public GetFlightsResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::Flight.Client.State.LiveFlightEntity, GetFlights_Flights_LiveFlight> getFlights_Flights_LiveFlightFromLiveFlightEntityMapper)
+        private readonly global::StrawberryShake.IEntityMapper<global::Flight.Client.State.AircraftEntity, GetAny_AircraftByAny_Aircraft> _getAny_AircraftByAny_AircraftFromAircraftEntityMapper;
+        public GetAnyResultFactory(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityMapper<global::Flight.Client.State.AircraftEntity, GetAny_AircraftByAny_Aircraft> getAny_AircraftByAny_AircraftFromAircraftEntityMapper)
         {
             _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
-            _getFlights_Flights_LiveFlightFromLiveFlightEntityMapper = getFlights_Flights_LiveFlightFromLiveFlightEntityMapper ?? throw new global::System.ArgumentNullException(nameof(getFlights_Flights_LiveFlightFromLiveFlightEntityMapper));
+            _getAny_AircraftByAny_AircraftFromAircraftEntityMapper = getAny_AircraftByAny_AircraftFromAircraftEntityMapper ?? throw new global::System.ArgumentNullException(nameof(getAny_AircraftByAny_AircraftFromAircraftEntityMapper));
         }
 
-        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::Flight.Client.IGetFlightsResult);
-        public GetFlightsResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        global::System.Type global::StrawberryShake.IOperationResultDataFactory.ResultType => typeof(global::Flight.Client.IGetAnyResult);
+        public GetAnyResult Create(global::StrawberryShake.IOperationResultDataInfo dataInfo, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
         {
             if (snapshot is null)
             {
                 snapshot = _entityStore.CurrentSnapshot;
             }
 
-            if (dataInfo is GetFlightsResultInfo info)
+            if (dataInfo is GetAnyResultInfo info)
             {
-                return new GetFlightsResult(MapNonNullableIGetFlights_FlightsNonNullableArray(info.Flights, snapshot));
+                return new GetAnyResult(MapNonNullableIGetAny_AircraftByAny(info.AircraftByAny, snapshot));
             }
 
-            throw new global::System.ArgumentException("GetFlightsResultInfo expected.");
+            throw new global::System.ArgumentException("GetAnyResultInfo expected.");
         }
 
-        private global::System.Collections.Generic.IReadOnlyList<global::Flight.Client.IGetFlights_Flights> MapNonNullableIGetFlights_FlightsNonNullableArray(global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId>? list, global::StrawberryShake.IEntityStoreSnapshot snapshot)
+        private global::Flight.Client.IGetAny_AircraftByAny MapNonNullableIGetAny_AircraftByAny(global::StrawberryShake.EntityId entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
         {
-            if (list is null)
+            if (entityId.Name.Equals("Aircraft", global::System.StringComparison.Ordinal))
             {
-                throw new global::System.ArgumentNullException();
-            }
-
-            var liveFlights = new global::System.Collections.Generic.List<global::Flight.Client.IGetFlights_Flights>();
-            foreach (global::StrawberryShake.EntityId child in list)
-            {
-                liveFlights.Add(MapNonNullableIGetFlights_Flights(child, snapshot));
-            }
-
-            return liveFlights;
-        }
-
-        private global::Flight.Client.IGetFlights_Flights MapNonNullableIGetFlights_Flights(global::StrawberryShake.EntityId entityId, global::StrawberryShake.IEntityStoreSnapshot snapshot)
-        {
-            if (entityId.Name.Equals("LiveFlight", global::System.StringComparison.Ordinal))
-            {
-                return _getFlights_Flights_LiveFlightFromLiveFlightEntityMapper.Map(snapshot.GetEntity<global::Flight.Client.State.LiveFlightEntity>(entityId) ?? throw new global::StrawberryShake.GraphQLClientException());
+                return _getAny_AircraftByAny_AircraftFromAircraftEntityMapper.Map(snapshot.GetEntity<global::Flight.Client.State.AircraftEntity>(entityId) ?? throw new global::StrawberryShake.GraphQLClientException());
             }
 
             throw new global::System.NotSupportedException();
@@ -400,68 +489,78 @@ namespace Flight.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlightsResultInfo : global::StrawberryShake.IOperationResultDataInfo
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAnyResultInfo : global::StrawberryShake.IOperationResultDataInfo
     {
         private readonly global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> _entityIds;
         private readonly global::System.UInt64 _version;
-        public GetFlightsResultInfo(global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId> flights, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
+        public GetAnyResultInfo(global::StrawberryShake.EntityId aircraftByAny, global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> entityIds, global::System.UInt64 version)
         {
-            Flights = flights;
+            AircraftByAny = aircraftByAny;
             _entityIds = entityIds ?? throw new global::System.ArgumentNullException(nameof(entityIds));
             _version = version;
         }
 
-        public global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId> Flights { get; }
+        public global::StrawberryShake.EntityId AircraftByAny { get; }
 
         public global::System.Collections.Generic.IReadOnlyCollection<global::StrawberryShake.EntityId> EntityIds => _entityIds;
         public global::System.UInt64 Version => _version;
         public global::StrawberryShake.IOperationResultDataInfo WithVersion(global::System.UInt64 version)
         {
-            return new GetFlightsResultInfo(Flights, _entityIds, version);
+            return new GetAnyResultInfo(AircraftByAny, _entityIds, version);
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlights_Flights_LiveFlightFromLiveFlightEntityMapper : global::StrawberryShake.IEntityMapper<global::Flight.Client.State.LiveFlightEntity, GetFlights_Flights_LiveFlight>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAny_AircraftByAny_AircraftFromAircraftEntityMapper : global::StrawberryShake.IEntityMapper<global::Flight.Client.State.AircraftEntity, GetAny_AircraftByAny_Aircraft>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
-        public GetFlights_Flights_LiveFlightFromLiveFlightEntityMapper(global::StrawberryShake.IEntityStore entityStore)
+        public GetAny_AircraftByAny_AircraftFromAircraftEntityMapper(global::StrawberryShake.IEntityStore entityStore)
         {
             _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
         }
 
-        public GetFlights_Flights_LiveFlight Map(global::Flight.Client.State.LiveFlightEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
+        public GetAny_AircraftByAny_Aircraft Map(global::Flight.Client.State.AircraftEntity entity, global::StrawberryShake.IEntityStoreSnapshot? snapshot = null)
         {
             if (snapshot is null)
             {
                 snapshot = _entityStore.CurrentSnapshot;
             }
 
-            return new GetFlights_Flights_LiveFlight(entity.Id, entity.Aircraft, entity.Airline, entity.From, entity.Number);
+            return new GetAny_AircraftByAny_Aircraft(entity.Id);
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
-    public partial class GetFlightsBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetFlightsResult>
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    internal interface IValueInputInfo
+    {
+        global::System.Boolean IsTypeNameSet { get; }
+
+        global::System.Boolean IsValueSet { get; }
+    }
+
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
+    public partial class GetAnyBuilder : global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetAnyResult>
     {
         private readonly global::StrawberryShake.IEntityStore _entityStore;
         private readonly global::StrawberryShake.IEntityIdSerializer _idSerializer;
-        private readonly global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetFlightsResult> _resultDataFactory;
-        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        private readonly global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetAnyResult> _resultDataFactory;
         private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.String, global::System.String> _stringParser;
-        public GetFlightsBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetFlightsResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Text.Json.JsonElement, global::System.Object> _anyParser;
+        private readonly global::StrawberryShake.Serialization.ILeafValueParser<global::System.Int32, global::System.Int32> _intParser;
+        public GetAnyBuilder(global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer idSerializer, global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetAnyResult> resultDataFactory, global::StrawberryShake.Serialization.ISerializerResolver serializerResolver)
         {
             _entityStore = entityStore ?? throw new global::System.ArgumentNullException(nameof(entityStore));
             _idSerializer = idSerializer ?? throw new global::System.ArgumentNullException(nameof(idSerializer));
             _resultDataFactory = resultDataFactory ?? throw new global::System.ArgumentNullException(nameof(resultDataFactory));
-            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
             _stringParser = serializerResolver.GetLeafValueParser<global::System.String, global::System.String>("String") ?? throw new global::System.ArgumentException("No serializer for type `String` found.");
+            _anyParser = serializerResolver.GetLeafValueParser<global::System.Text.Json.JsonElement, global::System.Object>("Any") ?? throw new global::System.ArgumentException("No serializer for type `Any` found.");
+            _intParser = serializerResolver.GetLeafValueParser<global::System.Int32, global::System.Int32>("Int") ?? throw new global::System.ArgumentException("No serializer for type `Int` found.");
         }
 
-        public global::StrawberryShake.IOperationResult<IGetFlightsResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
+        public global::StrawberryShake.IOperationResult<IGetAnyResult> Build(global::StrawberryShake.Response<global::System.Text.Json.JsonDocument> response)
         {
-            (IGetFlightsResult Result, GetFlightsResultInfo Info)? data = null;
+            (IGetAnyResult Result, GetAnyResultInfo Info)? data = null;
             global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.IClientError>? errors = null;
             if (response.Exception is null)
             {
@@ -490,40 +589,24 @@ namespace Flight.Client.State
                 errors = new global::StrawberryShake.IClientError[]{new global::StrawberryShake.ClientError(response.Exception.Message, exception: response.Exception, extensions: new global::System.Collections.Generic.Dictionary<global::System.String, global::System.Object?>{{"body", response.Body?.RootElement.ToString()}})};
             }
 
-            return new global::StrawberryShake.OperationResult<IGetFlightsResult>(data?.Result, data?.Info, _resultDataFactory, errors);
+            return new global::StrawberryShake.OperationResult<IGetAnyResult>(data?.Result, data?.Info, _resultDataFactory, errors);
         }
 
-        private (IGetFlightsResult, GetFlightsResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
+        private (IGetAnyResult, GetAnyResultInfo) BuildData(global::System.Text.Json.JsonElement obj)
         {
             var entityIds = new global::System.Collections.Generic.HashSet<global::StrawberryShake.EntityId>();
             global::StrawberryShake.IEntityStoreSnapshot snapshot = default !;
-            global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId> flightsId = default !;
+            global::StrawberryShake.EntityId aircraftByAnyId = default !;
             _entityStore.Update(session =>
             {
-                flightsId = UpdateNonNullableIGetFlights_FlightsEntityNonNullableArray(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "flights"), entityIds);
+                aircraftByAnyId = UpdateNonNullableIGetAny_AircraftByAnyEntity(session, global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "aircraftByAny"), entityIds);
                 snapshot = session.CurrentSnapshot;
             });
-            var resultInfo = new GetFlightsResultInfo(flightsId, entityIds, snapshot.Version);
+            var resultInfo = new GetAnyResultInfo(aircraftByAnyId, entityIds, snapshot.Version);
             return (_resultDataFactory.Create(resultInfo), resultInfo);
         }
 
-        private global::System.Collections.Generic.IReadOnlyList<global::StrawberryShake.EntityId> UpdateNonNullableIGetFlights_FlightsEntityNonNullableArray(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            var liveFlights = new global::System.Collections.Generic.List<global::StrawberryShake.EntityId>();
-            foreach (global::System.Text.Json.JsonElement child in obj.Value.EnumerateArray())
-            {
-                liveFlights.Add(UpdateNonNullableIGetFlights_FlightsEntity(session, child, entityIds));
-            }
-
-            return liveFlights;
-        }
-
-        private global::StrawberryShake.EntityId UpdateNonNullableIGetFlights_FlightsEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
+        private global::StrawberryShake.EntityId UpdateNonNullableIGetAny_AircraftByAnyEntity(global::StrawberryShake.IEntityStoreUpdateSession session, global::System.Text.Json.JsonElement? obj, global::System.Collections.Generic.ISet<global::StrawberryShake.EntityId> entityIds)
         {
             if (!obj.HasValue)
             {
@@ -532,15 +615,15 @@ namespace Flight.Client.State
 
             global::StrawberryShake.EntityId entityId = _idSerializer.Parse(obj.Value);
             entityIds.Add(entityId);
-            if (entityId.Name.Equals("LiveFlight", global::System.StringComparison.Ordinal))
+            if (entityId.Name.Equals("Aircraft", global::System.StringComparison.Ordinal))
             {
-                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::Flight.Client.State.LiveFlightEntity? entity))
+                if (session.CurrentSnapshot.TryGetEntity(entityId, out global::Flight.Client.State.AircraftEntity? entity))
                 {
-                    session.SetEntity(entityId, new global::Flight.Client.State.LiveFlightEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "aircraft")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "airline")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "from")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "number"))));
+                    session.SetEntity(entityId, new global::Flight.Client.State.AircraftEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id"))));
                 }
                 else
                 {
-                    session.SetEntity(entityId, new global::Flight.Client.State.LiveFlightEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "aircraft")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "airline")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "from")), DeserializeNonNullableString(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "number"))));
+                    session.SetEntity(entityId, new global::Flight.Client.State.AircraftEntity(DeserializeNonNullableInt32(global::StrawberryShake.Json.JsonElementExtensions.GetPropertyOrNull(obj, "id"))));
                 }
 
                 return entityId;
@@ -558,19 +641,9 @@ namespace Flight.Client.State
 
             return _intParser.Parse(obj.Value.GetInt32()!);
         }
-
-        private global::System.String DeserializeNonNullableString(global::System.Text.Json.JsonElement? obj)
-        {
-            if (!obj.HasValue)
-            {
-                throw new global::System.ArgumentNullException();
-            }
-
-            return _stringParser.Parse(obj.Value.GetString()!);
-        }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
     public partial class FlightClientEntityIdFactory : global::StrawberryShake.IEntityIdSerializer
     {
         private static readonly global::System.Text.Json.JsonWriterOptions _options = new global::System.Text.Json.JsonWriterOptions()
@@ -580,7 +653,7 @@ namespace Flight.Client.State
             global::System.String __typename = obj.GetProperty("__typename").GetString()!;
             return __typename switch
             {
-            "LiveFlight" => ParseLiveFlightEntityId(obj, __typename), _ => throw new global::System.NotSupportedException()}
+            "Aircraft" => ParseAircraftEntityId(obj, __typename), _ => throw new global::System.NotSupportedException()}
 
             ;
         }
@@ -589,17 +662,17 @@ namespace Flight.Client.State
         {
             return entityId.Name switch
             {
-            "LiveFlight" => FormatLiveFlightEntityId(entityId), _ => throw new global::System.NotSupportedException()}
+            "Aircraft" => FormatAircraftEntityId(entityId), _ => throw new global::System.NotSupportedException()}
 
             ;
         }
 
-        private global::StrawberryShake.EntityId ParseLiveFlightEntityId(global::System.Text.Json.JsonElement obj, global::System.String type)
+        private global::StrawberryShake.EntityId ParseAircraftEntityId(global::System.Text.Json.JsonElement obj, global::System.String type)
         {
             return new global::StrawberryShake.EntityId(type, obj.GetProperty("id").GetInt32()!);
         }
 
-        private global::System.String FormatLiveFlightEntityId(global::StrawberryShake.EntityId entityId)
+        private global::System.String FormatAircraftEntityId(global::StrawberryShake.EntityId entityId)
         {
             using var writer = new global::StrawberryShake.Internal.ArrayWriter();
             using var jsonWriter = new global::System.Text.Json.Utf8JsonWriter(writer, _options);
@@ -612,7 +685,7 @@ namespace Flight.Client.State
         }
     }
 
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
     public partial class FlightClientStoreAccessor : global::StrawberryShake.StoreAccessor
     {
         public FlightClientStoreAccessor(global::StrawberryShake.IOperationStore operationStore, global::StrawberryShake.IEntityStore entityStore, global::StrawberryShake.IEntityIdSerializer entityIdSerializer, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory> requestFactories, global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory> resultDataFactories): base(operationStore, entityStore, entityIdSerializer, requestFactories, resultDataFactories)
@@ -623,7 +696,7 @@ namespace Flight.Client.State
 
 namespace Microsoft.Extensions.DependencyInjection
 {
-    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCode("StrawberryShake", "12.1.0.0")]
     public static partial class FlightClientServiceCollectionExtensions
     {
         public static global::StrawberryShake.IClientBuilder<global::Flight.Client.State.FlightClientStoreAccessor> AddFlightClient(this global::Microsoft.Extensions.DependencyInjection.IServiceCollection services, global::StrawberryShake.ExecutionStrategy strategy = global::StrawberryShake.ExecutionStrategy.NetworkOnly)
@@ -635,7 +708,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 return new ClientServiceProvider(global::Microsoft.Extensions.DependencyInjection.ServiceCollectionContainerBuilderExtensions.BuildServiceProvider(serviceCollection));
             });
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => new global::Flight.Client.State.FlightClientStoreAccessor(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityStore>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IEntityIdSerializer>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationRequestFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.IOperationResultDataFactory>>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp))));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.GetFlightsQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.GetAnyQuery>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.FlightClient>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.IFlightClient>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<ClientServiceProvider>(sp)));
             return new global::StrawberryShake.ClientBuilder<global::Flight.Client.State.FlightClientStoreAccessor>("FlightClient", services, serviceCollection);
@@ -650,7 +723,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 var clientFactory = global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Net.Http.IHttpClientFactory>(parentServices);
                 return new global::StrawberryShake.Transport.Http.HttpConnection(() => clientFactory.CreateClient("FlightClient"));
             });
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::Flight.Client.State.LiveFlightEntity, global::Flight.Client.GetFlights_Flights_LiveFlight>, global::Flight.Client.State.GetFlights_Flights_LiveFlightFromLiveFlightEntityMapper>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityMapper<global::Flight.Client.State.AircraftEntity, global::Flight.Client.GetAny_AircraftByAny_Aircraft>, global::Flight.Client.State.GetAny_AircraftByAny_AircraftFromAircraftEntityMapper>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.StringSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.BooleanSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.ByteSerializer>(services);
@@ -667,14 +740,15 @@ namespace Microsoft.Extensions.DependencyInjection
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.ByteArraySerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.TimeSpanSerializer>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::StrawberryShake.Serialization.JsonSerializer>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializer, global::Flight.Client.ValueInputInputValueFormatter>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.Serialization.ISerializerResolver>(services, sp => new global::StrawberryShake.Serialization.SerializerResolver(global::System.Linq.Enumerable.Concat(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(parentServices), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::System.Collections.Generic.IEnumerable<global::StrawberryShake.Serialization.ISerializer>>(sp))));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetFlightsResult>, global::Flight.Client.State.GetFlightsResultFactory>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetFlightsResult>>(sp));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.IGetFlightsQuery>(sp));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetFlightsResult>, global::Flight.Client.State.GetFlightsBuilder>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::Flight.Client.IGetFlightsResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetFlightsResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetFlightsResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::Flight.Client.GetFlightsQuery>(services);
-            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::Flight.Client.IGetFlightsQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.GetFlightsQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetAnyResult>, global::Flight.Client.State.GetAnyResultFactory>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultDataFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultDataFactory<global::Flight.Client.IGetAnyResult>>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationRequestFactory>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.IGetAnyQuery>(sp));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetAnyResult>, global::Flight.Client.State.GetAnyBuilder>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IOperationExecutor<global::Flight.Client.IGetAnyResult>>(services, sp => new global::StrawberryShake.OperationExecutor<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetAnyResult>(global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.Transport.Http.IHttpConnection>(sp), () => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationResultBuilder<global::System.Text.Json.JsonDocument, global::Flight.Client.IGetAnyResult>>(sp), global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::StrawberryShake.IOperationStore>(sp), strategy));
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::Flight.Client.GetAnyQuery>(services);
+            global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::Flight.Client.IGetAnyQuery>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.GetAnyQuery>(sp));
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::StrawberryShake.IEntityIdSerializer, global::Flight.Client.State.FlightClientEntityIdFactory>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::Flight.Client.FlightClient>(services);
             global::Microsoft.Extensions.DependencyInjection.ServiceCollectionServiceExtensions.AddSingleton<global::Flight.Client.IFlightClient>(services, sp => global::Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService<global::Flight.Client.FlightClient>(sp));
