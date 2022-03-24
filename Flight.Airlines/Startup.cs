@@ -1,3 +1,4 @@
+using HotChocolate;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +14,11 @@ namespace Flight.Airlines
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGraphQLServer()
-                .AddQueryType<Query>();
+                .AddQueryType<Query>()
+                .ModifyRequestOptions(options =>
+                {
+                    options.IncludeExceptionDetails = true;
+                });
 
             services.AddDbContext<AirlinesDbContext>(optionsBuilder =>
             {

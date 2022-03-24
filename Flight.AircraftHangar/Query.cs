@@ -34,7 +34,7 @@ namespace Flight.AircraftHangar
         private readonly AircraftDbContext _context;
 
         /// <inheritdoc />
-        public AircraftBatchDataLoader(AircraftDbContext context, [NotNull] IBatchScheduler batchScheduler, [CanBeNull] DataLoaderOptions<string>? options = null) : base(batchScheduler, options)
+        public AircraftBatchDataLoader(AircraftDbContext context, [NotNull] IBatchScheduler batchScheduler, [CanBeNull] DataLoaderOptions? options = null) : base(batchScheduler, options)
         {
             _context = context;
         }
