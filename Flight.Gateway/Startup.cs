@@ -1,4 +1,6 @@
 using System;
+using Flight.Gateway.Configuration;
+using Flight.Gateway.Types;
 using HotChocolate.Execution;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,7 +42,9 @@ namespace Flight.Gateway
                 .AddRemoteSchema(FlightsSchema)
                 .AddRemoteSchema(AirlinesSchema, true)
                 //.AddQueryType(descriptor => descriptor.Name("Query"))
-                .AddTypeExtensionsFromFile("./Stitching.graphql");
+                .AddTypeExtensionsFromFile("./Stitching.graphql")
+                .AddType<DisableIfNullDirectiveType>()
+                .TryAddTypeInterceptor<DisableIfNullInterceptor>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -41,6 +41,11 @@ namespace Flight.ImportData
             await _context.Flights.AddAsync(new LiveFlight("UA1549", "LGA", "CLT", "UAL", "N106US"));
             await _context.Aircrafts.AddAsync(new Aircraft { RegNumber = "N106US", ICAOCode = "A320" });
         }
+        
+        public async Task AddTestFlightAsync()
+        {
+            await _context.Flights.AddAsync(new LiveFlight("Holiday", "LGA", "CLT", null, "N106US"));
+        }
 
         public async Task ImportAirports()
         {

@@ -16,6 +16,7 @@ extend type LiveFlight {
     @delegate(schema: "airports", path: "airport(iata: $fields:to)")
 
     AirlineInfo: Airline
+    @disableIfNull(field:"airline")
     @delegate(schema: "airlines", path: "airline(icao: $fields:airline)")
 
 }

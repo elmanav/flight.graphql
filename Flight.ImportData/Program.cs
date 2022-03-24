@@ -18,6 +18,7 @@ namespace Flight.ImportData
                 await importer.ImportAirports();
                 await importer.ImportAirlines();
                 await importer.AddCactus1549HudsonRiverAsync();
+                await importer.AddTestFlightAsync();
                 await context.SaveChangesAsync();
             }
 
